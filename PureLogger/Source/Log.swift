@@ -13,12 +13,24 @@ public class Log {
     
     // MARK: Public properties
     
+    ///
     public var isURLEnabled = true
+    /// If value is `true`, logger prints extra info like file name, line number, etc.
+    ///
+    /// Default value is `false`.
+    public var shouldPrintSystemInfo = false
+    /// Determines format of printing time for each of the logs.
+    ///
+    /// Default value is `yyyy-MM-dd HH:mm:ss`
     public var dateFormat = "yyyy-MM-dd HH:mm:ss" {
         didSet {
             dateFormatter.dateFormat = dateFormat
         }
     }
+    /// Provide description
+    public var separator: String = " "
+    /// Provide description
+    public var terminator: String = "\n"
     
     // MARK: Private properties
     
@@ -44,17 +56,16 @@ public class Log {
     }
     
     /// Simple log, like print
-    public func log(_ item: Any) {
-        print(item)
+    public func log(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, filename: filename, line: line, column: column, funcName: funcName)
     }
     
-    public func error(_ item: Any) {
-        print(item)
+    public func error(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, filename: filename, line: line, column: column, funcName: funcName)
     }
     
-    public func url(_ item: Any) {
-        guard isURLEnabled else { return }
-        print(item)
+    public func url(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, filename: filename, line: line, column: column, funcName: funcName)
     }
     
     // MARK: Private methods
@@ -62,21 +73,31 @@ public class Log {
     private func getDateDescription() -> String {
         return dateFormatter.string(from: Date())
     }
+
+    private func getSourceFileName(filePath: String) -> String {
+        let components = filePath.components(separatedBy: "/")
+        return components.last ?? ""
+    }
     
-    private func getFormattedItem(_ item: Any) -> String {
-        return "\(getDateDescription()) \(item)"
+    private func getFormattedItem(_ item: Any, filename: String, line: Int, column: Int, funcName: String) -> String {
+        var stringToPrint = "\(getDateDescription())"
+        if shouldPrintSystemInfo {
+            stringToPrint.append(" [\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->")
+        }
+        stringToPrint.append(" \(item)")
+        return stringToPrint
     }
 }
 
 extension Log {
-    func print(_ item: Any, separator: String = " ", terminator: String = "\n") {
+    func print(_ item: Any, filename: String, line: Int, column: Int, funcName: String) {
         #if DEBUG || STAGING
         if let items = item as? [Any] {
             items.forEach {
-                Swift.print(getFormattedItem($0), separator: separator, terminator: terminator)
+                Swift.print(getFormattedItem($0, filename: filename, line: line, column: column, funcName: funcName), separator: separator, terminator: terminator)
             }
         } else {
-            Swift.print(getFormattedItem(item))
+            Swift.print(getFormattedItem(item, filename: filename, line: line, column: column, funcName: funcName))
         }
         #endif
     }

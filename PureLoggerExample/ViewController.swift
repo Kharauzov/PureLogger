@@ -16,9 +16,14 @@ class ViewController: UIViewController {
         
         // testing
         
-        let log = Log()
-        log.log("Single item")
-        log.log(["First item", "Second item"])
+        let simpleLog = Log()
+        simpleLog.log("Single item")
+        simpleLog.log(["First item", "Second item"])
+        
+        let morePowerfulLog = Log()
+        morePowerfulLog.shouldPrintSystemInfo = true
+        morePowerfulLog.log("Elvis Presley")
+        morePowerfulLog.log(["Will", "Smith"])
     }
 
 
