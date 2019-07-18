@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Maybe the best logger in the world :P
+/// Maybe the best logger in the world :P :D
 public class Log {
     
     // MARK: Public properties
