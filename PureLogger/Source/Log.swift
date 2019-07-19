@@ -3,7 +3,7 @@
 //  PureLogger
 //
 //  Created by Mikhail Panfilov on 7/15/19.
-//  Copyright © 2019 PureLogger. All rights reserved.
+//  Copyright © 2019 Lollipop. All rights reserved.
 //
 
 import Foundation
@@ -13,13 +13,23 @@ public class Log {
     
     // MARK: Public properties
     
+    /// An array of level for the logger to print name.
     ///
-    public var isURLEnabled = true
-    /// If value is `true`, logger prints extra info like file name, line number, etc.
+    /// Default value is `[.debug, .info, .warning, .error]`.
+    public var shouldPrintDateFor: [Level] = [.debug, .info, .warning, .error]
+    /// An array of levels for the logger to print an emoji.
     ///
-    /// Default value is `false`.
-    public var shouldPrintSystemInfo = false
-    /// Determines format of printing time for each of the logs.
+    /// Default value is `Level.allCases`.
+    public var shouldPrintEmojiFor = Level.allCases
+    /// An array of levels for the logger to print Level name.
+    ///
+    /// Default value is `[.debug, .info, .warning, .error]`.
+    public var shouldPrintLevelFor: [Level] = [.debug, .info, .warning, .error]
+    /// An array of levels for the logger to print extra info like file name, line number, etc.
+    ///
+    /// Default value is `[.warning, .error]`.
+    public var shouldPrintSystemInfoFor: [Level] = [.warning, .error]
+    /// Determines the format of printing time for each of the logs.
     ///
     /// Default value is `yyyy-MM-dd HH:mm:ss`
     public var dateFormat = "yyyy-MM-dd HH:mm:ss" {
@@ -44,28 +54,57 @@ public class Log {
     
     // MARK: Public methods
     
-    public init(isURLEnabled: Bool = true) {
-        self.isURLEnabled = isURLEnabled
-    }
+    public init() { }
     
     /// To be able to print anything shortly
     @discardableResult
     public convenience init(_ items: Any) {
         self.init()
-        log(items)
+        none(items)
     }
     
-    /// Simple log, like print
-    public func log(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
-        print(item, filename: filename, line: line, column: column, funcName: funcName)
+    public enum Level: Int, CaseIterable {
+        case debug, info, warning, error, none
+        
+        public var emoji: String {
+            switch self {
+            case .debug: return "✏️"
+            case .info: return "ℹ️"
+            case .warning: return "⚠️"
+            case .error: return "❌"
+            case .none: return ""
+            }
+        }
+        
+        public var description: String {
+            switch self {
+            case .debug: return "DEBUG"
+            case .info: return "INFO"
+            case .warning: return "WARNING"
+            case .error: return "ERROR"
+            case .none: return ""
+            }
+        }
+    }
+    
+    public func debug(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, level: .debug, filename: filename, line: line, column: column, funcName: funcName)
+    }
+    
+    public func info(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, level: .info, filename: filename, line: line, column: column, funcName: funcName)
+    }
+    
+    public func warning(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, level: .warning, filename: filename, line: line, column: column, funcName: funcName)
     }
     
     public func error(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
-        print(item, filename: filename, line: line, column: column, funcName: funcName)
+        print(item, level: .error, filename: filename, line: line, column: column, funcName: funcName)
     }
     
-    public func url(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
-        print(item, filename: filename, line: line, column: column, funcName: funcName)
+    public func none(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print(item, level: .none, filename: filename, line: line, column: column, funcName: funcName)
     }
     
     // MARK: Private methods
@@ -73,32 +112,40 @@ public class Log {
     private func getDateDescription() -> String {
         return dateFormatter.string(from: Date())
     }
-
+    
     private func getSourceFileName(filePath: String) -> String {
         let components = filePath.components(separatedBy: "/")
         return components.last ?? ""
     }
     
-    private func getFormattedItem(_ item: Any, filename: String, line: Int, column: Int, funcName: String) -> String {
-        var stringToPrint = "\(getDateDescription())"
-        if shouldPrintSystemInfo {
-            stringToPrint.append(" [\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->")
-        }
-        stringToPrint.append(" \(item)")
+    private func getFormattedItem(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) -> String {
+        var stringToPrint = ""
+        if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
+        if shouldPrintEmojiFor.contains(level) { stringToPrint.append(level.emoji, withSeparator: true) }
+        if shouldPrintLevelFor.contains(level) { stringToPrint.append(level.description, withSeparator: true) }
+        let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
+        if shouldPrintSystemInfoFor.contains(level) { stringToPrint.append(systemInfo, withSeparator: true) }
+        stringToPrint.append("\(item)", withSeparator: true)
         return stringToPrint
     }
 }
 
 extension Log {
-    func print(_ item: Any, filename: String, line: Int, column: Int, funcName: String) {
+    func print(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) {
         #if DEBUG || STAGING
         if let items = item as? [Any] {
             items.forEach {
-                Swift.print(getFormattedItem($0, filename: filename, line: line, column: column, funcName: funcName), separator: separator, terminator: terminator)
+                Swift.print(getFormattedItem($0, level: level, filename: filename, line: line, column: column, funcName: funcName), separator: separator, terminator: terminator)
             }
         } else {
-            Swift.print(getFormattedItem(item, filename: filename, line: line, column: column, funcName: funcName))
+            Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
         }
         #endif
+    }
+}
+
+extension String {
+    mutating func append(_ other: String, withSeparator: Bool, separator: String = " ") {
+        self.append(withSeparator ? (self.isEmpty ? other : separator + other) : other)
     }
 }
