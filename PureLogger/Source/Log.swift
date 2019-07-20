@@ -123,8 +123,10 @@ public class Log {
         if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
         if shouldPrintEmojiFor.contains(level) { stringToPrint.append(level.emoji, withSeparator: true) }
         if shouldPrintLevelFor.contains(level) { stringToPrint.append(level.description, withSeparator: true) }
-        let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
-        if shouldPrintSystemInfoFor.contains(level) { stringToPrint.append(systemInfo, withSeparator: true) }
+        if shouldPrintSystemInfoFor.contains(level) {
+            let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
+            stringToPrint.append(systemInfo, withSeparator: true)
+        }
         stringToPrint.append("\(item)", withSeparator: true)
         return stringToPrint
     }
