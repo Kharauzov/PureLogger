@@ -15,15 +15,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // testing
+        
         Log("Simple log")
         
         let log = Log()
+        log.shouldPrintSystemInfoFor = []
         log.debug("Testing debug log")
         log.info("Testing info log")
         log.warning("Testing warning log")
         log.error("Testing eror log")
-//        log.error(["First item", "Second item"])
         
+        log.error(["First item", "Second item"])
+        
+        /*
         let customizedLog = Log()
         customizedLog.shouldPrintDateFor = [.error]
         customizedLog.shouldPrintLevelFor = [.error]
@@ -31,6 +35,14 @@ class ViewController: UIViewController {
         customizedLog.info("Testing customized info log")
         customizedLog.warning("Testing customized warning log")
         customizedLog.error("Testing customized eror log")
+         */
+        
+        Log.shared.shouldPrintEmojiFor = []
+        Log.shared.shouldPrintSystemInfoFor = []
+        Log.shared.debug("First print from singleton")
+        Log.shared.shouldPrintEmojiFor = Log.Level.allCases
+        Log.shared.shouldPrintSystemInfoFor = Log.Level.allCases
+        Log.shared.debug("Second print from singleton")
     }
 }
 

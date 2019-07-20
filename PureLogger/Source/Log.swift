@@ -41,6 +41,10 @@ public class Log {
     public var separator: String = " "
     /// Provide description
     public var terminator: String = "\n"
+    /// Global instance of logger to use across the project.
+    ///
+    /// For local usage please create separate instance of logger.
+    public static var shared = Log()
     
     // MARK: Private properties
     
@@ -135,13 +139,7 @@ public class Log {
 extension Log {
     func print(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) {
         #if DEBUG || STAGING
-        if let items = item as? [Any] {
-            items.forEach {
-                Swift.print(getFormattedItem($0, level: level, filename: filename, line: line, column: column, funcName: funcName), separator: separator, terminator: terminator)
-            }
-        } else {
-            Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
-        }
+        Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
         #endif
     }
 }
