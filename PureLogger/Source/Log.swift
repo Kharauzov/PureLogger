@@ -21,6 +21,10 @@ public class Log {
     ///
     /// Default value is `Level.allCases`.
     public var shouldPrintEmojiFor = Level.allCases
+    /// A dictionary contains an emoji that overrides default emoji for the level.
+    ///
+    /// Default value is `[:]`.
+    public var levelEmojis: [Level: String] = [:]
     /// An array of levels for the logger to print Level name.
     ///
     /// Default value is `[.debug, .info, .warning, .error]`.
@@ -121,7 +125,7 @@ public class Log {
     private func getFormattedItem(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) -> String {
         var stringToPrint = ""
         if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
-        if shouldPrintEmojiFor.contains(level) { stringToPrint.append(level.emoji, withSeparator: true) }
+        if shouldPrintEmojiFor.contains(level) { stringToPrint.append(getEmojiFor(level), withSeparator: true) }
         if shouldPrintLevelFor.contains(level) { stringToPrint.append(level.description, withSeparator: true) }
         if shouldPrintSystemInfoFor.contains(level) {
             let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
@@ -129,6 +133,10 @@ public class Log {
         }
         stringToPrint.append("\(item)", withSeparator: true)
         return stringToPrint
+    }
+    
+    private func getEmojiFor(_ level: Level) -> String {
+        return levelEmojis[level] ?? level.emoji
     }
 }
 

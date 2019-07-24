@@ -27,8 +27,9 @@ class ViewController: UIViewController {
         let customizedLog = Log()
         customizedLog.shouldPrintDateFor = [.error]
         customizedLog.shouldPrintLevelFor = [.error]
+        customizedLog.levelEmojis = [.info: "💻"]
         customizedLog.debug("Testing customized debug log")
-        customizedLog.info("Testing customized info log")
+        customizedLog.info("Here is custom emoji for info")
         customizedLog.warning("Testing customized warning log")
         customizedLog.error("Testing customized eror log")
     }
