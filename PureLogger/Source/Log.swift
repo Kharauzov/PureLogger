@@ -37,13 +37,9 @@ public class Log {
             dateFormatter.dateFormat = dateFormat
         }
     }
-    /// Provide description
-    public var separator: String = " "
-    /// Provide description
-    public var terminator: String = "\n"
-    /// Global instance of logger to use across the project.
+    /// The global instance of the logger to use across the project.
     ///
-    /// For local usage please create separate instance of logger.
+    /// For local usage please create a separate instance of the logger.
     public static var shared = Log()
     
     // MARK: Private properties
