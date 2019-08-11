@@ -16,6 +16,14 @@
 		4911D70C22DDBC3800F227BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4911D70A22DDBC3800F227BD /* LaunchScreen.storyboard */; };
 		4911D71822DDBDB500F227BD /* PureLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911D6ED22DDBBA600F227BD /* PureLogger.framework */; };
 		4911D71922DDBDB500F227BD /* PureLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4911D6ED22DDBBA600F227BD /* PureLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49BA4768230069F9002003E7 /* PureLogger_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 49BA4766230069F9002003E7 /* PureLogger_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49BA476B230069F9002003E7 /* PureLogger_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA4764230069F9002003E7 /* PureLogger_macOS.framework */; };
+		49BA476C230069F9002003E7 /* PureLogger_macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA4764230069F9002003E7 /* PureLogger_macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49BA477023006A15002003E7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D6F922DDBBDB00F227BD /* Log.swift */; };
+		49BA477A23006A47002003E7 /* PureLogger_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 49BA477823006A47002003E7 /* PureLogger_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49BA477D23006A47002003E7 /* PureLogger_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA477623006A47002003E7 /* PureLogger_tvOS.framework */; };
+		49BA477E23006A47002003E7 /* PureLogger_tvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA477623006A47002003E7 /* PureLogger_tvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49BA478223006A57002003E7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911D6F922DDBBDB00F227BD /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +34,20 @@
 			remoteGlobalIDString = 4911D6EC22DDBBA600F227BD;
 			remoteInfo = PureLogger;
 		};
+		49BA4769230069F9002003E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4911D6E422DDBBA600F227BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49BA4763230069F9002003E7;
+			remoteInfo = "PureLogger-macOS";
+		};
+		49BA477B23006A47002003E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4911D6E422DDBBA600F227BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49BA477523006A47002003E7;
+			remoteInfo = "PureLogger-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +57,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				49BA477E23006A47002003E7 /* PureLogger_tvOS.framework in Embed Frameworks */,
+				49BA476C230069F9002003E7 /* PureLogger_macOS.framework in Embed Frameworks */,
 				4911D71922DDBDB500F227BD /* PureLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -54,6 +78,12 @@
 		4911D70822DDBC3800F227BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4911D70B22DDBC3800F227BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4911D70D22DDBC3800F227BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49BA4764230069F9002003E7 /* PureLogger_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLogger_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BA4766230069F9002003E7 /* PureLogger_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PureLogger_macOS.h; sourceTree = "<group>"; };
+		49BA4767230069F9002003E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49BA477623006A47002003E7 /* PureLogger_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLogger_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BA477823006A47002003E7 /* PureLogger_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PureLogger_tvOS.h; sourceTree = "<group>"; };
+		49BA477923006A47002003E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +98,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BA477D23006A47002003E7 /* PureLogger_tvOS.framework in Frameworks */,
+				49BA476B230069F9002003E7 /* PureLogger_macOS.framework in Frameworks */,
 				4911D71822DDBDB500F227BD /* PureLogger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA4761230069F9002003E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA477323006A47002003E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +126,8 @@
 			children = (
 				4911D6EF22DDBBA600F227BD /* PureLogger */,
 				4911D70022DDBC3700F227BD /* PureLoggerExample */,
+				49BA4765230069F9002003E7 /* PureLogger-macOS */,
+				49BA477723006A47002003E7 /* PureLogger-tvOS */,
 				4911D6EE22DDBBA600F227BD /* Products */,
 				4911D71622DDBD2500F227BD /* Frameworks */,
 			);
@@ -90,6 +138,8 @@
 			children = (
 				4911D6ED22DDBBA600F227BD /* PureLogger.framework */,
 				4911D6FF22DDBC3700F227BD /* PureLoggerExample.app */,
+				49BA4764230069F9002003E7 /* PureLogger_macOS.framework */,
+				49BA477623006A47002003E7 /* PureLogger_tvOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,6 +182,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		49BA4765230069F9002003E7 /* PureLogger-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				49BA4766230069F9002003E7 /* PureLogger_macOS.h */,
+				49BA4767230069F9002003E7 /* Info.plist */,
+			);
+			path = "PureLogger-macOS";
+			sourceTree = "<group>";
+		};
+		49BA477723006A47002003E7 /* PureLogger-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				49BA477823006A47002003E7 /* PureLogger_tvOS.h */,
+				49BA477923006A47002003E7 /* Info.plist */,
+			);
+			path = "PureLogger-tvOS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -140,6 +208,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				4911D6F222DDBBA600F227BD /* PureLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA475F230069F9002003E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49BA4768230069F9002003E7 /* PureLogger_macOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA477123006A47002003E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49BA477A23006A47002003E7 /* PureLogger_tvOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,11 +261,49 @@
 			);
 			dependencies = (
 				4911D71B22DDBDB500F227BD /* PBXTargetDependency */,
+				49BA476A230069F9002003E7 /* PBXTargetDependency */,
+				49BA477C23006A47002003E7 /* PBXTargetDependency */,
 			);
 			name = PureLoggerExample;
 			productName = PureLoggerExample;
 			productReference = 4911D6FF22DDBC3700F227BD /* PureLoggerExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		49BA4763230069F9002003E7 /* PureLogger-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49BA476F230069F9002003E7 /* Build configuration list for PBXNativeTarget "PureLogger-macOS" */;
+			buildPhases = (
+				49BA475F230069F9002003E7 /* Headers */,
+				49BA4760230069F9002003E7 /* Sources */,
+				49BA4761230069F9002003E7 /* Frameworks */,
+				49BA4762230069F9002003E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PureLogger-macOS";
+			productName = "PureLogger-macOS";
+			productReference = 49BA4764230069F9002003E7 /* PureLogger_macOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		49BA477523006A47002003E7 /* PureLogger-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49BA477F23006A47002003E7 /* Build configuration list for PBXNativeTarget "PureLogger-tvOS" */;
+			buildPhases = (
+				49BA477123006A47002003E7 /* Headers */,
+				49BA477223006A47002003E7 /* Sources */,
+				49BA477323006A47002003E7 /* Frameworks */,
+				49BA477423006A47002003E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PureLogger-tvOS";
+			productName = "PureLogger-tvOS";
+			productReference = 49BA477623006A47002003E7 /* PureLogger_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -198,6 +320,12 @@
 						LastSwiftMigration = 1020;
 					};
 					4911D6FE22DDBC3700F227BD = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					49BA4763230069F9002003E7 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					49BA477523006A47002003E7 = {
 						CreatedOnToolsVersion = 10.2;
 					};
 				};
@@ -217,6 +345,8 @@
 			targets = (
 				4911D6EC22DDBBA600F227BD /* PureLogger */,
 				4911D6FE22DDBC3700F227BD /* PureLoggerExample */,
+				49BA4763230069F9002003E7 /* PureLogger-macOS */,
+				49BA477523006A47002003E7 /* PureLogger-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +366,20 @@
 				4911D70C22DDBC3800F227BD /* LaunchScreen.storyboard in Resources */,
 				4911D70922DDBC3800F227BD /* Assets.xcassets in Resources */,
 				4911D70722DDBC3700F227BD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA4762230069F9002003E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA477423006A47002003E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +403,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49BA4760230069F9002003E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49BA477023006A15002003E7 /* Log.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BA477223006A47002003E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49BA478223006A57002003E7 /* Log.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -266,6 +426,16 @@
 			isa = PBXTargetDependency;
 			target = 4911D6EC22DDBBA600F227BD /* PureLogger */;
 			targetProxy = 4911D71A22DDBDB500F227BD /* PBXContainerItemProxy */;
+		};
+		49BA476A230069F9002003E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49BA4763230069F9002003E7 /* PureLogger-macOS */;
+			targetProxy = 49BA4769230069F9002003E7 /* PBXContainerItemProxy */;
+		};
+		49BA477C23006A47002003E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49BA477523006A47002003E7 /* PureLogger-tvOS */;
+			targetProxy = 49BA477B23006A47002003E7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -502,6 +672,106 @@
 			};
 			name = Release;
 		};
+		49BA476D230069F9002003E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PureLogger-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Lollipop.PureLogger-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49BA476E230069F9002003E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PureLogger-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Lollipop.PureLogger-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		49BA478023006A47002003E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PureLogger-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Lollipop.PureLogger-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49BA478123006A47002003E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PureLogger-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Lollipop.PureLogger-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -528,6 +798,24 @@
 			buildConfigurations = (
 				4911D70F22DDBC3800F227BD /* Debug */,
 				4911D71022DDBC3800F227BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49BA476F230069F9002003E7 /* Build configuration list for PBXNativeTarget "PureLogger-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49BA476D230069F9002003E7 /* Debug */,
+				49BA476E230069F9002003E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49BA477F23006A47002003E7 /* Build configuration list for PBXNativeTarget "PureLogger-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49BA478023006A47002003E7 /* Debug */,
+				49BA478123006A47002003E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
