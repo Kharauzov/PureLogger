@@ -37,10 +37,10 @@ public class Log {
             dateFormatter.dateFormat = dateFormat
         }
     }
-    /// Provide description
-    public var separator: String = " "
-    /// Provide description
-    public var terminator: String = "\n"
+    /// The global instance of the logger to use across the project.
+    ///
+    /// For local usage please create a separate instance of the logger.
+    public static var shared = Log()
     
     // MARK: Private properties
     
@@ -135,13 +135,7 @@ public class Log {
 extension Log {
     func print(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) {
         #if DEBUG || STAGING
-        if let items = item as? [Any] {
-            items.forEach {
-                Swift.print(getFormattedItem($0, level: level, filename: filename, line: line, column: column, funcName: funcName), separator: separator, terminator: terminator)
-            }
-        } else {
-            Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
-        }
+        Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
         #endif
     }
 }
