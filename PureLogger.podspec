@@ -5,9 +5,9 @@ s.platform = :ios
 s.name = "PureLogger"
 s.summary = "Elegant replacement of Swift.print()"
 s.requires_arc = true
-s.version = "0.1"
+s.version = "0.2"
 s.license = { :type => "MIT", :file => "LICENSE" }
-s.author = { "Lollipop" => "wwrs69@gmail.com" }
+s.author = { "Mikhail Panfilov & Serhii Kharauzov" => "wwrs69@gmail.com" }
 s.homepage = "https://github.com/Kharauzov/PureLogger"
 s.source = { :git => "https://github.com/Kharauzov/PureLogger.git",
 :tag => s.version }

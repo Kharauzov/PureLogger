@@ -15,16 +15,16 @@ public class Log {
     
     /// An array of level for the logger to print name.
     ///
-    /// Default value is `[.debug, .info, .warning, .error]`.
-    public var shouldPrintDateFor: [Level] = [.debug, .info, .warning, .error]
+    /// Default value is `Level.allCases`.
+    public var shouldPrintDateFor = Level.allCases
     /// An array of levels for the logger to print an emoji.
     ///
     /// Default value is `Level.allCases`.
     public var shouldPrintEmojiFor = Level.allCases
     /// An array of levels for the logger to print Level name.
     ///
-    /// Default value is `[.debug, .info, .warning, .error]`.
-    public var shouldPrintLevelNameFor: [Level] = [.debug, .info, .warning, .error]
+    /// Default value is `Level.allCases`.
+    public var shouldPrintLevelNameFor = Level.allCases
     /// An array of levels for the logger to print extra info like file name, line number, etc.
     ///
     /// Default value is `[.warning, .error]`.
@@ -68,7 +68,7 @@ public class Log {
     }
     
     public enum Level: Int, CaseIterable {
-        case debug, info, warning, error, none
+        case debug, info, warning, error
         
         public var emoji: String {
             switch self {
@@ -76,7 +76,6 @@ public class Log {
             case .info: return "ℹ️"
             case .warning: return "⚠️"
             case .error: return "❌"
-            case .none: return ""
             }
         }
         
@@ -86,7 +85,6 @@ public class Log {
             case .info: return "INFO"
             case .warning: return "WARNING"
             case .error: return "ERROR"
-            case .none: return ""
             }
         }
     }
@@ -108,7 +106,7 @@ public class Log {
     }
     
     public func none(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
-        print(item, level: .none, filename: filename, line: line, column: column, funcName: funcName)
+        print(item, level: nil, filename: filename, line: line, column: column, funcName: funcName)
     }
     
     // MARK: Private methods
@@ -122,14 +120,16 @@ public class Log {
         return components.last ?? ""
     }
     
-    private func getFormattedItem(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) -> String {
+    private func getFormattedItem(_ item: Any, level: Level?, filename: String, line: Int, column: Int, funcName: String) -> String {
         var stringToPrint = ""
-        if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
-        if shouldPrintEmojiFor.contains(level) { stringToPrint.append(getEmojiFor(level), withSeparator: true) }
-        if shouldPrintLevelNameFor.contains(level) { stringToPrint.append(level.name, withSeparator: true) }
-        if shouldPrintSystemInfoFor.contains(level) {
-            let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
-            stringToPrint.append(systemInfo, withSeparator: true)
+        if let level = level {
+            if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
+            if shouldPrintEmojiFor.contains(level) { stringToPrint.append(getEmojiFor(level), withSeparator: true) }
+            if shouldPrintLevelNameFor.contains(level) { stringToPrint.append(level.name, withSeparator: true) }
+            if shouldPrintSystemInfoFor.contains(level) {
+                let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
+                stringToPrint.append(systemInfo, withSeparator: true)
+            }
         }
         stringToPrint.append("\(item)", withSeparator: true)
         return stringToPrint
@@ -141,7 +141,7 @@ public class Log {
 }
 
 extension Log {
-    func print(_ item: Any, level: Level, filename: String, line: Int, column: Int, funcName: String) {
+    func print(_ item: Any, level: Level?, filename: String, line: Int, column: Int, funcName: String) {
         #if DEBUG || STAGING
         Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
         #endif
