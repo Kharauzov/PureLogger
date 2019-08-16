@@ -21,18 +21,18 @@ public class Log {
     ///
     /// Default value is `Level.allCases`.
     public var shouldPrintEmojiFor = Level.allCases
-    /// A dictionary contains an emoji that overrides default emoji for the level.
-    ///
-    /// Default value is `[:]`.
-    public var levelEmojis: [Level: String] = [:]
     /// An array of levels for the logger to print Level name.
     ///
     /// Default value is `[.debug, .info, .warning, .error]`.
-    public var shouldPrintLevelFor: [Level] = [.debug, .info, .warning, .error]
+    public var shouldPrintLevelNameFor: [Level] = [.debug, .info, .warning, .error]
     /// An array of levels for the logger to print extra info like file name, line number, etc.
     ///
     /// Default value is `[.warning, .error]`.
     public var shouldPrintSystemInfoFor: [Level] = [.warning, .error]
+    /// A dictionary contains an emoji that overrides default emoji for the level.
+    ///
+    /// Default value is `[:]`.
+    public var levelEmojis: [Level: String] = [:]
     /// Determines the format of printing time for each of the logs.
     ///
     /// Default value is `yyyy-MM-dd HH:mm:ss`
@@ -80,7 +80,7 @@ public class Log {
             }
         }
         
-        public var description: String {
+        public var name: String {
             switch self {
             case .debug: return "DEBUG"
             case .info: return "INFO"
@@ -126,7 +126,7 @@ public class Log {
         var stringToPrint = ""
         if shouldPrintDateFor.contains(level) { stringToPrint.append(getDateDescription(), withSeparator: true) }
         if shouldPrintEmojiFor.contains(level) { stringToPrint.append(getEmojiFor(level), withSeparator: true) }
-        if shouldPrintLevelFor.contains(level) { stringToPrint.append(level.description, withSeparator: true) }
+        if shouldPrintLevelNameFor.contains(level) { stringToPrint.append(level.name, withSeparator: true) }
         if shouldPrintSystemInfoFor.contains(level) {
             let systemInfo = "[\(getSourceFileName(filePath: filename))]:\(line) \(funcName) ->"
             stringToPrint.append(systemInfo, withSeparator: true)
