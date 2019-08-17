@@ -89,22 +89,27 @@ public class Log {
         }
     }
     
+    /// Prints item with additional information for **Level.debug** type.
     public func debug(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print(item, level: .debug, filename: filename, line: line, column: column, funcName: funcName)
     }
     
+    /// Prints item with additional information for **Level.info** type.
     public func info(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print(item, level: .info, filename: filename, line: line, column: column, funcName: funcName)
     }
     
+    /// Prints item with additional information for **Level.warning** type.
     public func warning(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print(item, level: .warning, filename: filename, line: line, column: column, funcName: funcName)
     }
     
+    /// Prints item with additional information for **Level.error** type.
     public func error(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print(item, level: .error, filename: filename, line: line, column: column, funcName: funcName)
     }
     
+    /// Prints item itself without any additional information.
     public func none(_ item: Any, filename: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print(item, level: nil, filename: filename, line: line, column: column, funcName: funcName)
     }
