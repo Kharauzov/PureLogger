@@ -147,7 +147,7 @@ public class Log {
 
 extension Log {
     func print(_ item: Any, level: Level?, filename: String, line: Int, column: Int, funcName: String) {
-        #if DEBUG || STAGING
+        #if DEBUG
         Swift.print(getFormattedItem(item, level: level, filename: filename, line: line, column: column, funcName: funcName))
         #endif
     }
